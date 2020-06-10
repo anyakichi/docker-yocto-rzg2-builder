@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+build()
+{
+    base=$1
+    machine=$2
+    branch=$3
+
+    tag="${machine}-$(echo "${branch}" \
+            | sed -e 's/^BSP-//' -e 's/-update/u/' -e 's/\.//g' -e 's/-RT/rt/')"
+
+    docker build \
+        --build-arg builder_base="anyakichi/yocto-builder:${base:-latest}" \
+        --build-arg meta_rzg2_branch="${branch}" \
+        --build-arg yocto_machine="${machine}" \
+        -t "${DOCKER_REPO}:${tag}" \
+        .
+}
+
+if [ $# -eq 0 ]; then
+    build xenial-rocko ek874        master
+    build xenial-rocko ek874        BSP-1.0.0
+    build xenial-rocko ek874        BSP-1.0.1
+    build xenial-rocko ek874        BSP-1.0.1-update1
+    build xenial-rocko ek874        BSP-1.0.2
+    build xenial-rocko ek874        BSP-1.0.2-update1
+    build xenial-rocko ek874        BSP-1.0.3
+    build xenial-rocko ek874        BSP-1.0.3-RT
+    build xenial-rocko hihope-rzg2m master
+    build xenial-rocko hihope-rzg2m BSP-1.0.1
+    build xenial-rocko hihope-rzg2m BSP-1.0.1-update1
+    build xenial-rocko hihope-rzg2m BSP-1.0.2
+    build xenial-rocko hihope-rzg2m BSP-1.0.2-update1
+    build xenial-rocko hihope-rzg2m BSP-1.0.3
+    build xenial-rocko hihope-rzg2m BSP-1.0.3-RT
+    build xenial-rocko hihope-rzg2n master
+    build xenial-rocko hihope-rzg2n BSP-1.0.2
+    build xenial-rocko hihope-rzg2n BSP-1.0.2-update1
+    build xenial-rocko hihope-rzg2n BSP-1.0.3
+    build xenial-rocko hihope-rzg2n BSP-1.0.3-RT
+else
+    build "$@"
+fi
