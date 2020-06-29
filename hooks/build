@@ -30,6 +30,7 @@ if [ $# -eq 0 ]; then
     build xenial-rocko ek874        BSP-1.0.2-update1
     build xenial-rocko ek874        BSP-1.0.3
     build xenial-rocko ek874        BSP-1.0.3-RT
+    build xenial-rocko ek874        BSP-1.0.4
     build xenial-rocko hihope-rzg2m master
     build xenial-rocko hihope-rzg2m BSP-1.0.1
     build xenial-rocko hihope-rzg2m BSP-1.0.1-update1
@@ -37,11 +38,14 @@ if [ $# -eq 0 ]; then
     build xenial-rocko hihope-rzg2m BSP-1.0.2-update1
     build xenial-rocko hihope-rzg2m BSP-1.0.3
     build xenial-rocko hihope-rzg2m BSP-1.0.3-RT
+    build xenial-rocko hihope-rzg2m BSP-1.0.4
     build xenial-rocko hihope-rzg2n master
     build xenial-rocko hihope-rzg2n BSP-1.0.2
     build xenial-rocko hihope-rzg2n BSP-1.0.2-update1
     build xenial-rocko hihope-rzg2n BSP-1.0.3
     build xenial-rocko hihope-rzg2n BSP-1.0.3-RT
+    build xenial-rocko hihope-rzg2n BSP-1.0.4
+    build xenial-rocko hihope-rzg2h BSP-1.0.4
 else
     build "$@"
 fi
