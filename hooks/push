@@ -1,26 +1,27 @@
 #!/bin/bash
 
-docker push "${DOCKER_REPO}:ek874-master"
-docker push "${DOCKER_REPO}:ek874-100"
-docker push "${DOCKER_REPO}:ek874-101"
-docker push "${DOCKER_REPO}:ek874-101u1"
-docker push "${DOCKER_REPO}:ek874-102"
-docker push "${DOCKER_REPO}:ek874-102u1"
-docker push "${DOCKER_REPO}:ek874-103"
-docker push "${DOCKER_REPO}:ek874-103rt"
-docker push "${DOCKER_REPO}:ek874-104"
-docker push "${DOCKER_REPO}:hihope-rzg2m-master"
-docker push "${DOCKER_REPO}:hihope-rzg2m-101"
-docker push "${DOCKER_REPO}:hihope-rzg2m-101u1"
-docker push "${DOCKER_REPO}:hihope-rzg2m-102"
-docker push "${DOCKER_REPO}:hihope-rzg2m-102u1"
-docker push "${DOCKER_REPO}:hihope-rzg2m-103"
-docker push "${DOCKER_REPO}:hihope-rzg2m-103rt"
-docker push "${DOCKER_REPO}:hihope-rzg2m-104"
-docker push "${DOCKER_REPO}:hihope-rzg2n-master"
-docker push "${DOCKER_REPO}:hihope-rzg2n-102"
-docker push "${DOCKER_REPO}:hihope-rzg2n-102u1"
-docker push "${DOCKER_REPO}:hihope-rzg2n-103"
-docker push "${DOCKER_REPO}:hihope-rzg2n-103rt"
-docker push "${DOCKER_REPO}:hihope-rzg2n-104"
-docker push "${DOCKER_REPO}:hihope-rzg2h-104"
+push()
+{
+    machine=$1
+    branch=$2
+
+    tag="${machine}-$(echo "${branch}" \
+            | sed -e 's/^BSP-//' -e 's/-update/u/' -e 's/\.//g' -e 's/-RT/rt/')"
+
+    docker push "${DOCKER_REPO}:${tag}"
+}
+
+for v in BSP-1.0.0 BSP-1.0.1{,-update1} BSP-1.0.2{,-update1} \
+        BSP-1.0.3{,-RT} BSP-1.0.4{,-RT}{,-update1} \
+        BSP-1.0.5{,-RT{,-update1}}; do
+    push ek874 "$v"
+    if [[ ! "$v" < BSP-1.0.1 ]]; then
+        push hihope-rzg2m "$v"
+    fi
+    if [[ ! "$v" < BSP-1.0.2 ]]; then
+        push hihope-rzg2n "$v"
+    fi
+    if [[ ! "$v" < BSP-1.0.4 ]]; then
+        push hihope-rzg2h "$v"
+    fi
+done
