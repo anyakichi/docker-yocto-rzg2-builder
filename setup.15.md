@@ -1,13 +1,10 @@
-Add meta layers.
+Copy bblayers.conf from meta-rzg2 if its content is Yocto's original
+version.
 
 ```
-$ bitbake-layers -F add-layer \$(pwd)/../meta-gplv2
-$ bitbake-layers -F add-layer \$(pwd)/../meta-linaro/meta-linaro-toolchain
-$ bitbake-layers -F add-layer \$(pwd)/../meta-linaro/meta-optee
-$ bitbake-layers -F add-layer \$(pwd)/../meta-openembedded/meta-oe
-$ bitbake-layers -F add-layer \$(pwd)/../meta-openembedded/meta-multimedia
-$ bitbake-layers -F add-layer \$(pwd)/../meta-qt5
-$ bitbake-layers -F add-layer \$(pwd)/../meta-rzg2
+$ if sha256sum --status -c <<<'974dd605cfe64b8f6754e8d2cd1247b660e85b04bc56a75ad3a3194b77a6c7c9 conf/bblayers.conf'; then \
+    cp ../meta-rzg2/docs/sample/conf/${YOCTO_MACHINE}/linaro-gcc/bblayers.conf conf/bblayers.conf; \
+  fi
 ```
 
 Append the ${YOCTO_MACHINE} default config to auto.conf.
