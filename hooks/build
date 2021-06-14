@@ -26,8 +26,7 @@ if [ $# -eq 0 ]; then
 
     for v in BSP-1.0.0 BSP-1.0.1{,-update1} BSP-1.0.2{,-update1} \
             BSP-1.0.3{,-RT} BSP-1.0.4{,-RT}{,-update1} \
-            BSP-1.0.5{,-RT{,-update1}} BSP-1.0.6{,-RT,-update1} \
-            BSP-1.0.7{,-RT}; do
+            BSP-1.0.5{,-RT{,-update1}} BSP-1.0.6{,-RT,-update1}; do
         build xenial-rocko ek874 "$v"
         if [[ ! "$v" < BSP-1.0.1 ]]; then
             build xenial-rocko hihope-rzg2m "$v"
@@ -38,6 +37,13 @@ if [ $# -eq 0 ]; then
         if [[ ! "$v" < BSP-1.0.4 ]]; then
             build xenial-rocko hihope-rzg2h "$v"
         fi
+    done
+
+    for v in BSP-1.0.7{,-RT} BSP-1.0.8; do
+        build bionic-rocko ek874 "$v"
+        build bionic-rocko hihope-rzg2m "$v"
+        build bionic-rocko hihope-rzg2n "$v"
+        build bionic-rocko hihope-rzg2h "$v"
     done
 else
     build "$@"
