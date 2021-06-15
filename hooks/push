@@ -11,7 +11,8 @@ push()
     docker push "${DOCKER_REPO}:${tag}"
 }
 
-docker push "${DOCKER_REPO}:template"
+docker push "${DOCKER_REPO}:xenial-rocko"
+docker push "${DOCKER_REPO}:bionic-rocko"
 
 for v in BSP-1.0.0 BSP-1.0.1{,-update1} BSP-1.0.2{,-update1} \
         BSP-1.0.3{,-RT} BSP-1.0.4{,-RT}{,-update1} \

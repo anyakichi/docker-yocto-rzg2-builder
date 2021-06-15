@@ -22,7 +22,12 @@ build()
 }
 
 if [ $# -eq 0 ]; then
-    docker build -t "${DOCKER_REPO}:template" .
+    for x in xenial-rocko bionic-rocko; do
+        docker build \
+            --build-arg builder_base="anyakichi/yocto-builder:${x}" \
+            -t "${DOCKER_REPO}:${x}" \
+            .
+    done
 
     for v in BSP-1.0.0 BSP-1.0.1{,-update1} BSP-1.0.2{,-update1} \
             BSP-1.0.3{,-RT} BSP-1.0.4{,-RT}{,-update1} \
