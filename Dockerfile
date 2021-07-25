@@ -1,5 +1,5 @@
-ARG builder_base=anyakichi/yocto-builder:xenial-rocko
-FROM ${builder_base}
+ARG base
+FROM ghcr.io/anyakichi/yocto-builder:${base}
 
 COPY buildenv.d/* /etc/buildenv.d/
 
