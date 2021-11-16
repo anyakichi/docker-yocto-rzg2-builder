@@ -1,8 +1,7 @@
 ARG base
 FROM ghcr.io/anyakichi/yocto-builder:${base}
 
-ARG yocto_branch
-COPY ${yocto_branch}/buildenv.d/* /etc/buildenv.d/
+COPY ${YOCTO_BRANCH}/buildenv.d/* /etc/buildenv.d/
 
 ARG yocto_machine="ek874|hihope-rzg2{h,m,n}"
 ARG meta_rzg2_branch="master"
