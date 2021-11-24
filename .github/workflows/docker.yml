@@ -17,6 +17,8 @@ jobs:
             [bionic-rocko, hihope-rzg2n, BSP-1.0.8],
             [bionic-dunfell, smarc-rzg2l, rzg2l_bsp_v1.3],
             [bionic-dunfell, smarc-rzg2lc, rzg2l_bsp_v1.3],
+            [bionic-dunfell, smarc-rzg2l, rzg2l_bsp_v1.3-update1],
+            [bionic-dunfell, smarc-rzg2lc, rzg2l_bsp_v1.3-update1],
           ]
     steps:
       - run: |
@@ -25,11 +27,7 @@ jobs:
           else
             prefix="$(echo ${{ github.ref }} | sed -e 's,.*/,,')-"
           fi
-          if [[ ${{ matrix.base_machine_branch[2] }} == BSP-* ]]; then
-            version=$(echo "${{ matrix.base_machine_branch[2] }}" | sed -e 's/^BSP-//' -e 's/-update/u/' -e 's/\.//g' -e 's/-RT/rt/')
-          else
-            version=$(echo "${{ matrix.base_machine_branch[2] }}" | sed -e 's/rzg2l_bsp_v//' -e 's/\.//g')
-          fi
+          version=$(echo "${{ matrix.base_machine_branch[2] }}" | sed -r -e 's/^(BSP-|rzg2l_bsp_v)//' -e 's/-update/u/' -e 's/\.//g' -e 's/-RT/rt/')
           echo TAGS="${prefix}${{ matrix.base_machine_branch[1] }}-${version}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
       - uses: docker/metadata-action@v3
