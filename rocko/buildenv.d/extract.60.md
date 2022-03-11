@@ -13,7 +13,7 @@ $ git -C meta-linaro checkout 75dfb67bbb14a70cd47afda9726e2e1c76731885
 $ git clone https://git.openembedded.org/meta-openembedded
 $ git -C meta-openembedded checkout 352531015014d1957d6444d114f4451e241c4d23
 
-$ git clone http://git.yoctoproject.org/cgit.cgi/meta-gplv2
+$ git clone http://git.yoctoproject.org/meta-gplv2
 $ git -C meta-gplv2 checkout f875c60ecd6f30793b80a431a2423c4b98e51548
 
 $ git clone https://github.com/meta-qt5/meta-qt5.git
