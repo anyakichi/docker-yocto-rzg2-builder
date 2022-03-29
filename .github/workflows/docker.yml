@@ -21,6 +21,9 @@ jobs:
             [bionic-dunfell, smarc-rzg2lc, rzg2l_bsp_v1.3-update1],
             [bionic-dunfell, smarc-rzg2l, rzg2l_bsp_v1.3-update2],
             [bionic-dunfell, smarc-rzg2lc, rzg2l_bsp_v1.3-update2],
+            [bionic-dunfell, smarc-rzg2l, rzg2l_bsp_v1.4],
+            [bionic-dunfell, smarc-rzg2lc, rzg2l_bsp_v1.4],
+            [bionic-dunfell, smarc-rzg2ul, rzg2l_bsp_v1.4],
           ]
     steps:
       - run: |
