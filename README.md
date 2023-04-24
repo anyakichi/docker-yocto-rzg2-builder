@@ -1,7 +1,7 @@
 # docker-yocto-rzg2-builder
 
 [docker-buildenv](https://github.com/anyakichi/docker-buildenv) for
-Intel Atom Firmware by Yocto Project.
+Renesas RZ/G2 family firmware by Yocto Project.
 
 ## How to use
 
