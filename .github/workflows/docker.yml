@@ -8,43 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        base_machine_branch:
-          [
-            [bionic-rocko, ek874, BSP-1.0.8, rocko],
-            [bionic-rocko, hihope-rzg2h, BSP-1.0.8, rocko],
-            [bionic-rocko, hihope-rzg2m, BSP-1.0.8, rocko],
-            [bionic-rocko, hihope-rzg2n, BSP-1.0.8, rocko],
-            [bionic-rocko, ek874, BSP-1.0.10-update1, rocko],
-            [bionic-rocko, hihope-rzg2h, BSP-1.0.10-update1, rocko],
-            [bionic-rocko, hihope-rzg2m, BSP-1.0.10-update1, rocko],
-            [bionic-rocko, hihope-rzg2n, BSP-1.0.10-update1, rocko],
-            [focal-dunfell, smarc-rzg2l, rzg2l_bsp_v1.4, dunfell],
-            [focal-dunfell, smarc-rzg2lc, rzg2l_bsp_v1.4, dunfell],
-            [focal-dunfell, smarc-rzg2ul, rzg2l_bsp_v1.4, dunfell],
-            [focal-dunfell, ek874, BSP-3.0.0, "3.0"],
-            [focal-dunfell, hihope-rzg2h, BSP-3.0.0, "3.0"],
-            [focal-dunfell, hihope-rzg2m, BSP-3.0.0, "3.0"],
-            [focal-dunfell, hihope-rzg2n, BSP-3.0.0, "3.0"],
-            [focal-dunfell, smarc-rzg2l, BSP-3.0.0, "3.0"],
-            [focal-dunfell, smarc-rzg2lc, BSP-3.0.0, "3.0"],
-            [focal-dunfell, smarc-rzg2ul, BSP-3.0.0, "3.0"],
-            [focal-dunfell, ek874, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, hihope-rzg2h, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, hihope-rzg2m, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, hihope-rzg2n, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, smarc-rzg2l, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, smarc-rzg2lc, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, smarc-rzg2ul, BSP-3.0.1, "3.0.1"],
-          ]
+        machine:
+          - ek874
+          - hihope-rzg2h
+          - hihope-rzg2m
+          - hihope-rzg2n
+          - smarc-rzg2l
+          - smarc-rzg2lc
+          - smarc-rzg2ul
     steps:
       - run: |
-          if [[ ${{ github.ref }} == "refs/heads/main" ]]; then
-            prefix=
-          else
-            prefix="$(echo ${{ github.ref }} | sed -e 's,.*/,,')-"
-          fi
-          version=$(echo "${{ matrix.base_machine_branch[2] }}" | sed -r -e 's/^(BSP-|rzg2l_bsp_v)//' -e 's/-update/u/' -e 's/\.//g' -e 's/-RT/rt/')
-          echo TAGS="${prefix}${{ matrix.base_machine_branch[1] }}-${version}" >> $GITHUB_ENV
+          version=$(echo "${{ github.ref_name }}" | sed -r -e 's/^(BSP-|rzg2l_bsp_v)//' -e 's/-update/u/' -e 's/\.//g' -e 's/-RT/rt/')
+          echo TAGS="${{ matrix.machine }}-${version}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
       - uses: docker/metadata-action@v3
         id: meta
@@ -67,9 +42,6 @@ jobs:
           context: .
           push: true
           build-args: |
-            base=${{ matrix.base_machine_branch[0] }}
-            meta_rzg2_branch=${{ matrix.base_machine_branch[2] }}
-            yocto_machine=${{ matrix.base_machine_branch[1] }}
-            buildenv=${{ matrix.base_machine_branch[3] }}
+            yocto_machine=${{ matrix.machine }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
