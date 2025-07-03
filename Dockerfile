@@ -1,4 +1,4 @@
-FROM ghcr.io/anyakichi/yocto-builder:focal-dunfell
+FROM ghcr.io/anyakichi/yocto-builder:jammy-dunfell
 
 COPY buildenv.d/* /etc/buildenv.d/
 
