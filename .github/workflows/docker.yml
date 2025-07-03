@@ -15,6 +15,7 @@ jobs:
           - smarc-rzg2l
           - smarc-rzg2lc
           - smarc-rzg2ul
+          - smarc-rzv2l
     steps:
       - run: |
           version=$(echo "${{ github.ref_name }}" | sed -r -e 's/^(BSP-|rzg2l_bsp_v)//' -e 's/-update/u/' -e 's/\.//g' -e 's/-RT/rt/')
