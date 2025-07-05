@@ -1,0 +1,25 @@
+#!/bin/sh
+
+case "${1:-$YOCTO_MACHINE}" in
+iwg*)
+    ehco rzg1
+    ;;
+ek874 | hihope-*)
+    echo rzg2h
+    ;;
+*rzv2l*)
+    echo rzv2l
+    ;;
+rzv2m*)
+    echo rzv2m
+    ;;
+*rzfive*)
+    echo rzfive
+    ;;
+*rzg3s*)
+    echo rzg3s
+    ;;
+*)
+    echo rzg2l
+    ;;
+esac

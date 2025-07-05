@@ -1,6 +1,7 @@
 ARG base=latest
 FROM ghcr.io/anyakichi/yocto-builder:${base}
 
+COPY bin/* /usr/local/bin/
 COPY buildenv.d/* /etc/buildenv.d/
 
 ARG yocto_machine="ek874|hihope-rzg2{h,m,n}"
