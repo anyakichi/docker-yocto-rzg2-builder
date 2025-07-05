@@ -9,31 +9,20 @@ jobs:
       matrix:
         base_machine_branch:
           [
-            [bionic-rocko, ek874, BSP-1.0.8, rocko],
-            [bionic-rocko, hihope-rzg2h, BSP-1.0.8, rocko],
-            [bionic-rocko, hihope-rzg2m, BSP-1.0.8, rocko],
-            [bionic-rocko, hihope-rzg2n, BSP-1.0.8, rocko],
-            [bionic-rocko, ek874, BSP-1.0.10-update1, rocko],
-            [bionic-rocko, hihope-rzg2h, BSP-1.0.10-update1, rocko],
-            [bionic-rocko, hihope-rzg2m, BSP-1.0.10-update1, rocko],
-            [bionic-rocko, hihope-rzg2n, BSP-1.0.10-update1, rocko],
-            [focal-dunfell, smarc-rzg2l, rzg2l_bsp_v1.4, dunfell],
-            [focal-dunfell, smarc-rzg2lc, rzg2l_bsp_v1.4, dunfell],
-            [focal-dunfell, smarc-rzg2ul, rzg2l_bsp_v1.4, dunfell],
-            [focal-dunfell, ek874, BSP-3.0.0, "3.0"],
-            [focal-dunfell, hihope-rzg2h, BSP-3.0.0, "3.0"],
-            [focal-dunfell, hihope-rzg2m, BSP-3.0.0, "3.0"],
-            [focal-dunfell, hihope-rzg2n, BSP-3.0.0, "3.0"],
-            [focal-dunfell, smarc-rzg2l, BSP-3.0.0, "3.0"],
-            [focal-dunfell, smarc-rzg2lc, BSP-3.0.0, "3.0"],
-            [focal-dunfell, smarc-rzg2ul, BSP-3.0.0, "3.0"],
-            [focal-dunfell, ek874, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, hihope-rzg2h, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, hihope-rzg2m, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, hihope-rzg2n, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, smarc-rzg2l, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, smarc-rzg2lc, BSP-3.0.1, "3.0.1"],
-            [focal-dunfell, smarc-rzg2ul, BSP-3.0.1, "3.0.1"],
+            [focal-dunfell, ek874, BSP-3.0.0],
+            [focal-dunfell, hihope-rzg2h, BSP-3.0.0],
+            [focal-dunfell, hihope-rzg2m, BSP-3.0.0],
+            [focal-dunfell, hihope-rzg2n, BSP-3.0.0],
+            [focal-dunfell, smarc-rzg2l, BSP-3.0.0],
+            [focal-dunfell, smarc-rzg2lc, BSP-3.0.0],
+            [focal-dunfell, smarc-rzg2ul, BSP-3.0.0],
+            [focal-dunfell, ek874, BSP-3.0.1],
+            [focal-dunfell, hihope-rzg2h, BSP-3.0.1],
+            [focal-dunfell, hihope-rzg2m, BSP-3.0.1],
+            [focal-dunfell, hihope-rzg2n, BSP-3.0.1],
+            [focal-dunfell, smarc-rzg2l, BSP-3.0.1],
+            [focal-dunfell, smarc-rzg2lc, BSP-3.0.1],
+            [focal-dunfell, smarc-rzg2ul, BSP-3.0.1],
           ]
     steps:
       - run: |
@@ -69,6 +58,5 @@ jobs:
             base=${{ matrix.base_machine_branch[0] }}
             meta_rzg2_branch=${{ matrix.base_machine_branch[2] }}
             yocto_machine=${{ matrix.base_machine_branch[1] }}
-            buildenv=${{ matrix.base_machine_branch[3] }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
