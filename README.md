@@ -17,10 +17,10 @@ builder@rzg2-1:/build/build$ build
 
 ```
 $ docker build \
-    --build-arg base=bionic-rocko \
-    --build-arg meta_rzg2_branch=BSP-1.0.8 \
-    --build-arg yocto_machine=ek874 \
-  -t yocto-rzg2-builder:ek874-108 .
+    --build-arg base=jammy-dunfell \
+    --build-arg meta_renesas_rev=BSP-3.0.7 \
+    --build-arg yocto_machine=smarc-rzv2l \
+  -t yocto-rzg2-builder:smarc-rzv2l .
 ```
 
 Pre-built docker images are available from:
