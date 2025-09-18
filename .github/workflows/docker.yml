@@ -52,6 +52,14 @@ jobs:
             [jammy-dunfell, smarc-rzg2lc, BSP-3.0.7],
             [jammy-dunfell, smarc-rzg2ul, BSP-3.0.7],
             [jammy-dunfell, smarc-rzv2l, BSP-3.0.7],
+            [jammy-dunfell, ek874, BSP-3.0.7-update3],
+            [jammy-dunfell, hihope-rzg2h, BSP-3.0.7-update3],
+            [jammy-dunfell, hihope-rzg2m, BSP-3.0.7-update3],
+            [jammy-dunfell, hihope-rzg2n, BSP-3.0.7-update3],
+            [jammy-dunfell, smarc-rzg2l, BSP-3.0.7-update3],
+            [jammy-dunfell, smarc-rzg2lc, BSP-3.0.7-update3],
+            [jammy-dunfell, smarc-rzg2ul, BSP-3.0.7-update3],
+            [jammy-dunfell, smarc-rzv2l, BSP-3.0.7-update3],
           ]
     steps:
       - run: |
